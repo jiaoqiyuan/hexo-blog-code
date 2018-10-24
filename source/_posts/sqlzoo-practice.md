@@ -6,6 +6,8 @@ categories: 数据库
 thumbnail: https://zhidao91.oss-cn-shanghai.aliyuncs.com/wp-content/uploads/2015/11/databaseDevelopment.jpg
 ---
 
+    sqlzoo是一个[SQL语句练习网站][1]。
+
 
 # SELECT from Nobel
 
@@ -218,3 +220,6 @@ where winner='EUGENE O\'NEILL'
 	SELECT population FROM world y WHERE x.continent=y.continent AND y.name <> x.name
 	)
 	```
+
+
+[1]: https://zh.sqlzoo.net
