@@ -59,7 +59,7 @@ thumbnail: https://www.tutorialpedia.net/wp-content/uploads/2016/10/JAVA.jpg
 - 接口定义的方法默认是public abstract(不需要写)
 - 一个类可以实现多个interface
 
-| interface | abstra class | interface
+|  | abstra class | interface
 :---------: | :----------: | :-------: |
 继承   | 只能extends一个clas | 可以implements多个interface
 字段 | 可以定义实例字段 |  不能定义实例字段
