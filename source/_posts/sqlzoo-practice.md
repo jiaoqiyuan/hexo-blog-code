@@ -606,5 +606,220 @@ WHERE movieid IN (
 
 ```
 
+# Quiz MORE JOIN
+
+选择题答案：
+
+| Q\A | 1 | 2 | 3 | 4 | 5 |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| 1  | | | √ | | |
+| 2  | | | | | √ |
+| 3  | | | √ | | |
+| 4  | | √ | | | |
+| 5  | | | | √ | |
+| 6  | | | √ | | |
+| 7  | | √ | | | |
+
+
+# USING NULL
+
+- 1. List the teachers who have NULL for their department.
+    ```
+    SELECT name 
+    FROM teacher 
+    WHERE dept is NULL
+    ```
+
+- 2. Note the INNER JOIN misses the teachers with no department and the departments with no teacher.
+    ```
+    SELECT teacher.name, dept.name
+    FROM teacher INNER JOIN dept
+    ON (teacher.dept=dept.id)
+    ```
+
+- 3. Use a different JOIN so that all teachers are listed.
+    ```
+    SELECT teacher.name, dept.name
+    FROM teacher 
+    LEFT JOIN dept ON (teacher.dept=dept.id)
+    ```
+
+- 4. Use a different JOIN so that all departments are listed.
+    ```
+    SELECT teacher.name, dept.name
+    FROM dept 
+    LEFT JOIN teacher ON (dept.id=teacher.dept)
+    ```
+
+- 5. Use COALESCE to print the mobile number. Use the number '07986 444 2266' if there is no number given. Show teacher name and mobile number or '07986 444 2266'
+    ```
+    SELECT teacher.name, COALESCE(mobile, '07986 444 2266')
+    FROM teacher
+    ```
+
+- 6. Use the COALESCE function and a LEFT JOIN to print the teacher name and department name. Use the string 'None' where there is no department.
+    ```
+    SELECT teacher.name, COALESCE(dept.name, 'None')
+    FROM teacher 
+    LEFT JOIN dept ON (teacher.dept = dept.id)
+    ```
+
+- 7. Use COUNT to show the number of teachers and the number of mobile phones.
+    ```
+    SELECT COUNT(name), COUNT(mobile)
+    FROM teacher
+    ```
+
+- 8. Use COUNT and GROUP BY dept.name to show each department and the number of staff. Use a RIGHT JOIN to ensure that the Engineering department is listed.
+    ```
+    SELECT dept.name, COUNT(teacher.name)
+    FROM teacher
+    RIGHT JOIN dept ON (dept.id = teacher.dept)
+    GROUP BY dept.name
+    ```
+
+
+- 9. Use CASE to show the name of each teacher followed by 'Sci' if the teacher is in dept 1 or 2 and 'Art' otherwise.
+    ```
+    SELECT teacher.name, 
+    CASE WHEN (teacher.dept = 1 or teacher.dept = 2) THEN 'Sci'
+    ELSE 'Art' END
+    FROM teacher
+    ```
+
+- 10.  Use CASE to show the name of each teacher followed by 'Sci' if the teacher is in dept 1 or 2, show 'Art' if the teacher's dept is 3 and 'None' otherwise.
+    ```
+    SELECT teacher.name, 
+    CASE 
+    WHEN (teacher.dept=1 OR teacher.dept=2) THEN 'Sci'
+    WHEN teacher.dept=3 THEN 'Art'
+    ELSE 'None' END
+    FROM teacher
+    ```
+
+# Using Null Quiz
+
+
+选择题答案：
+
+| Q\A | 1 | 2 | 3 | 4 | 5 |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| 1  | | | | | √ |
+| 2  | | | √ | | |
+| 3  | | | | √ | |
+| 4  | | √ | | | |
+| 5  | √ | | | | |
+| 6  | √ | | | | |
+
+# Self join
+
+- 1. How many stops are in the database.
+```
+SELECt COUNT(*) from stops
+```
+
+
+- 2. Find the id value for the stop 'Craiglockhart'
+```
+SELECT id
+FROM stops
+WHERE name='Craiglockhart'
+```
+
+- 3. Give the id and the name for the stops on the '4' 'LRT' service.
+```
+SELECT id, name
+FROM stops JOIN route ON id=stop WHERE company='LRT' AND num=4 
+```
+
+- 4. The query shown gives the number of routes that visit either London Road (149) or Craiglockhart (53). Run the query and notice the two services that link these stops have a count of 2. Add a HAVING clause to restrict the output to these two routes.
+```
+SELECT company, num, COUNT(*)
+FROM route WHERE stop=149 OR stop=53
+GROUP BY company, num
+HAVING COUNT(*) = 2
+```
+
+- 5. Execute the self join shown and observe that b.stop gives all the places you can get to from Craiglockhart, without changing routes. Change the query so that it shows the services from Craiglockhart to London Road.
+```
+SELECT a.company, a.num, a.stop, b.stop
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+WHERE a.stop=53 AND b.stop=149
+```
+
+
+- 6. The query shown is similar to the previous one, however by joining two copies of the stops table we can refer to stops by name rather than by number. Change the query so that the services between 'Craiglockhart' and 'London Road' are shown. If you are tired of these places try 'Fairmilehead' against 'Tollcross'
+```
+SELECT a.company, a.num, stopa.name, stopb.name
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+  JOIN stops stopa ON (a.stop=stopa.id)
+  JOIN stops stopb ON (b.stop=stopb.id)
+WHERE stopa.name='Craiglockhart' AND stopb.name='London Road'
+```
+
+- 7. Give a list of all the services which connect stops 115 and 137 ('Haymarket' and 'Leith')
+```
+SELECT DISTINCT a.company, a.num
+FROM route a JOIN route b ON
+  (a.company =b.company AND a.num=b.num)
+  JOIN stops stopa ON (a.stop=stopa.id)
+  JOIN stops stopb ON (b.stop=stopb.id)
+WHERE stopa.name='Haymarket' AND stopb.name='Leith'
+```
+
+- 8. Give a list of the services which connect the stops 'Craiglockhart' and 'Tollcross'
+```
+SELECT a.company, a.num
+FROM route a JOIN route b ON
+a.company=b.company and a.num=b.num
+JOIN stops stopa ON a.stop=stopa.id
+JOIN stops stopb ON b.stop=stopb.id
+WHERE stopa.name='Craiglockhart' AND stopb.name='Tollcross'
+```
+
+
+- 9. Give a distinct list of the stops which may be reached from 'Craiglockhart' by taking one bus, including 'Craiglockhart' itself, offered by the LRT company. Include the company and bus no. of the relevant services.
+```
+SELECT stopa.name, a.company, a.num
+FROM route a
+  JOIN route b ON (a.num=b.num AND a.company=b.company)
+  JOIN stops stopa ON (a.stop=stopa.id)
+  JOIN stops stopb ON (b.stop=stopb.id)
+WHERE stopb.name = 'Craiglockhart'
+```
+
+- 10. Find the routes involving two buses that can go from Craiglockhart to Sighthill.
+Show the bus no. and company for the first bus, the name of the stop for the transfer,
+and the bus no. and company for the second bus.
+    ```
+    SELECT DISTINCT bus1.num, bus1.company, name, bus2.num, bus2.company FROM (
+    SELECT start1.num, start1.company, stop1.stop FROM route AS start1 JOIN route AS stop1 
+    ON start1.num = stop1.num 
+    AND start1.company = stop1.company AND start1.stop != stop1.stop WHERE start1.stop = 
+    (SELECT id FROM stops WHERE name = 'Craiglockhart')) AS bus1
+    JOIN (SELECT start2.num, start2.company, start2.stop FROM route AS start2 
+    JOIN route AS stop2 ON start2.num = stop2.num 
+    AND start2.company = stop2.company 
+    AND start2.stop != stop2.stop 
+    WHERE stop2.stop = 
+    (SELECT id FROM stops WHERE name = 'Sighthill')) AS bus2 
+    ON bus1.stop = bus2.stop JOIN stops ON bus1.stop = stops.id
+    ```
+
+
+# Self join Quiz
+
+
+选择题答案：
+
+| Q\A | 1 | 2 | 3 | 4 | 5 |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| 1  | | | √ | | |
+| 2  | | | | | √ |
+| 3  | | | | √ | |
+
+
 
 [1]: https://zh.sqlzoo.net
