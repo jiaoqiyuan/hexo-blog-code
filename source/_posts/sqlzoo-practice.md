@@ -713,6 +713,8 @@ WHERE movieid IN (
 
 # Self join
 
+这个有点难，从第5题开始我是参考别人的答案写的，我还不太理解，so bad！
+
 - 1. How many stops are in the database.
 ```
 SELECt COUNT(*) from stops
