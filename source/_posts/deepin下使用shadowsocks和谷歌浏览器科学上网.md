@@ -7,6 +7,7 @@ thumbnail: https://static.fatesinger.com/2015/07/64e84a873a37f832.jpg
 ---
 
 # deepin安装shadowsockets
+    最近装了个deepin，安装shadowsocks时记录一下，免得以后还要到处查看怎么安装。
 
 ## 1，安装pip3
 ```
