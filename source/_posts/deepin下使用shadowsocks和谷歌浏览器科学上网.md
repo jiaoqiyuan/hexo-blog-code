@@ -12,9 +12,30 @@ thumbnail: https://static.fatesinger.com/2015/07/64e84a873a37f832.jpg
 ## 1，安装pip3
 ```
 wget https://bootstrap.pypa.io/get-pip.py
-python3 get-pip.py
+sudo python3 get-pip.py
 ```
 不要使用apt安装pip3，因为后面可能会遇到高版本的pip3会有main函数导入失败的问题，所以就用get-pip安装吧。
+
+PS:在使用ubuntu时，安装pip3可能会遇到这个问题：
+```
+Traceback (most recent call last):
+  File "get-pip.py", line 20890, in <module>
+    main()
+  File "get-pip.py", line 197, in main
+    bootstrap(tmpdir=tmpdir)
+  File "get-pip.py", line 82, in bootstrap
+    import pip._internal
+  File "/tmp/tmpfs3x_4_3/pip.zip/pip/_internal/__init__.py", line 40, in <module>
+  File "/tmp/tmpfs3x_4_3/pip.zip/pip/_internal/cli/autocompletion.py", line 8, in <module>
+  File "/tmp/tmpfs3x_4_3/pip.zip/pip/_internal/cli/main_parser.py", line 8, in <module>
+  File "/tmp/tmpfs3x_4_3/pip.zip/pip/_internal/cli/cmdoptions.py", line 17, in <module>
+  File "/tmp/tmpfs3x_4_3/pip.zip/pip/_internal/locations.py", line 10, in <module>
+ImportError: cannot import name 'sysconfig'
+```
+这是因为少安装了一个包：
+```
+sudo apt install python3-distutils
+```
 
 ## 2, 安装shadowsocks
 ```
@@ -40,7 +61,12 @@ sudo pip3 install shadowsocks
 /usr/bin/ss-local -c /home/jony/apps/shadowsocks/shadowsocks.json
 ```
 
-可以将上面的命令放到一个可执行文件内，并设置为开机自启动：
+PS: Ubuntu18可能会遇到：Command 'ss-server' not found, 那就用下面命令安装。
+```
+sudo apt install shadowsocks-libev
+```
+
+可以将上面的命令放到一个可执行文件shadowsocks内，并设置为开机自启动：
 ```
 sudo cp shadowsocks /etc/init.d
 sudo update-rc.d shadowsocks defaults 100
@@ -51,7 +77,9 @@ sudo update-rc.d shadowsocks defaults 100
 
 ## 5, 在谷歌浏览器安装SwitchyOmega
 
-[下载地址][1]
+[谷歌浏览器下载地址][3]。
+
+[SwitchyOmega下载地址][1]。
 
 下载完直接丢带google chrome的扩展程序中去就行了。
 
@@ -65,3 +93,4 @@ sudo update-rc.d shadowsocks defaults 100
 
 [1]: https://github.com/FelisCatus/SwitchyOmega/releases
 [2]: https://www.aliyun.com/jiaocheng/134757.html
+[3]: http://www.ubuntuchrome.com/
