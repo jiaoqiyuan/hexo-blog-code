@@ -123,8 +123,8 @@ qrcode:
 #    Prettify
 #        theme: # Available value in /source/css/prettify/[theme].min.css
 prettify:
-    enable: true
-    theme: "tomorrow-night-eighties"
+    enable: false
+    theme: "github-v2"
 
 #    Hanabi (https://github.com/egoist/hanabi)
 #        line_number: [true/false] # Show line number for code block
@@ -133,9 +133,9 @@ prettify:
 #                    - If `includeDefaultColors` is true, this will append colors to the color pool
 #                    - If `includeDefaultColors` is false, this will instead default color pool
 hanabi:
-    enable: false
+    enable: true
     line_number: false
-    includeDefaultColors: false
+    includeDefaultColors: true
     customColors: 
 
 # Post License
