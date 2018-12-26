@@ -72,6 +72,58 @@ Flume作为一个日志收集工具，非常轻量级，基于一个个Flume Age
     26 十二月 2018 14:08:56,172 INFO  [SinkRunner-PollingRunner-DefaultSinkProcessor] (org.apache.flume.sink.LoggerSink.process:95)  - Event: { headers:{} body: 37 34 31 37 32                                  74172 }
     ```
 
+## Flume原理
+
+### Flume Agent
+
+Flume是一个基于Flume Agent组建而成的复杂而强大的日志收集系统，而Flume Agent就是将运行在服务器上的进程的相关日志信息采集到指定存储的服务进程。
+
+### Flume Agent的组成
+
+![agent](https://camo.githubusercontent.com/eb46174526ec248c378fc656e55b77a8fc68e1bb/68747470733a2f2f666c756d652e6170616368652e6f72672f5f696d616765732f44657647756964655f696d61676530302e706e67)
+
+Flume Agent由三部分组成：Source、Channel、Sink。
+
+- source：从数据接收器接收数据，并将数据一Flume的event格式传递给一个或多个Channel，Flume提供多种数据接收方式，比如taildir，Kafka等。
+
+- Channel：Channel是一种短暂的存储容器，它将从source接收到的event格式的数据缓存起来，知道它们被sink消费掉。它在source和sink间起着一种桥梁的作用。支持的类类型有：FileChannel，Memory Channel等。
+
+- Sink：sink将数据保存到存储器中，它从channel消费数据（event）并将其传递给目标地址，目标地可能是Hive，HDFS，Hbase等。
+
+### Flume Agent基本工作流程
+
+Flume的核心是把数据从数据源(Source)收集过来，再将收集到的数据发送到指定的目的地(Sink)，为保证发送过程的正确性，在发生那个到目的地之前，会先缓存数据，用于缓存数据的通道我们就称之为Channel，待数据真正到达目的地Sink后，Flume再删除缓存的数据。
+
+### Flume Event
+
+Flume Event是将传输数据进行封装的数据格式，是Flume进行数据传输的基本单位，如果是文本文件，通常是一行记录。
+
+Event从source流向channel，在到sink，其本身为字节数组，可携带header信息，比如：
+
+```
+FlumeEvent数据结构：
+class FlumeEvent implements Event, Writable {
+    private Map<String, String> headers;
+    private byte[] body;
+}
+
+Event示例：
+{ "headers" : {"mykey" : "myvalue"}, "body" : "real log msg"}
+```
+
+Event是事务的基本单位，代表一个数据的最小完成单元。
+
+### Flume的特性
+
+- **模块化设计：** source、channel、sink三者可以根据业务自由组合，构建相对复杂的日志管道流。
+
+- **可接入性：** 支持多种主流系统和框架，如HDFS、HBase、Kafka、ES、Thrift、Avro等，都能很好地与Flume集成。
+
+- **容错性：** Flume中的Event是具有事务性质的，这保证了数据在源端和目的端的一致性。
+
+- **可扩展性：** 可以根据自己业务需要来定制实现某些组建，比如定制话的Source、Channle、Sink。
+
+
 ## Flume使用示例
 
 ### 1. 监听端口，输出到控制台
@@ -325,20 +377,20 @@ Flume作为一个日志收集工具，非常轻量级，基于一个个Flume Age
     hdfs_sink
     └── file_ch
         ├── checkpoint
-        │   ├── checkpoint
-        │   ├── checkpoint.meta
-        │   ├── inflightputs
-        │   ├── inflighttakes
-        │   └── queueset
+        │   ├── checkpoint
+        │   ├── checkpoint.meta
+        │   ├── inflightputs
+        │   ├── inflighttakes
+        │   └── queueset
         ├── data
-        │   ├── log-2
-        │   ├── log-2.meta
-        │   ├── log-3
-        │   ├── log-3.meta
-        │   ├── log-4
-        │   ├── log-4.meta.tmp
-        │   ├── log-5
-        │   └── log-5.meta
+        │   ├── log-2
+        │   ├── log-2.meta
+        │   ├── log-3
+        │   ├── log-3.meta
+        │   ├── log-4
+        │   ├── log-4.meta.tmp
+        │   ├── log-5
+        │   └── log-5.meta
         └── positionFile
 
     ```
@@ -347,6 +399,182 @@ Flume作为一个日志收集工具，非常轻量级，基于一个个Flume Age
     ```
     hadoop fs -ls /user/jony/flume_data/file_ch/2018-12-26
     ```
+
+## Flume高级配置
+
+### 多个FLume串联
+
+比如下面这种情况：
+
+![agents](https://camo.githubusercontent.com/6a9dc2fc391d189441318f97e6351a1e7927c41d/68747470733a2f2f666c756d652e6170616368652e6f72672f5f696d616765732f5573657247756964655f696d61676530332e706e67)
+
+Flume串联需要满足前一个agent的sink和后一个agent的source以avro的方式连接起来即可。
+
+大型客户端生成日志，存储系统处理能力不足的情况下，可以将flume配置成层级结构：
+
+![agents](https://camo.githubusercontent.com/db574688edbd6169991f004e9019193ac18b1828/68747470733a2f2f666c756d652e6170616368652e6f72672f5f696d616765732f5573657247756964655f696d61676530322e706e67)
+
+可以在每台服务器上配置一个flume agent，然后将这些agent再串联一个公用的agent进行日志收集，这个共用的agent将收集到的日志写到hdfs上。
+
+**这里会存在一个隐患，如果公用的agent挂了，那么日志系统整个就崩溃了.**
+
+针对这种情况，可以使用flume的负载均衡模式，配置如下：
+
+```conf
+#load-balance
+agent1.sources=r1
+agent1.channels=c1
+agent1.sinks=k1 k2  #配置多个sink，分别指向第二级的agent
+
+agent1.sinkgroups = g1
+agent1.sinkgroups.g1.sinks = k1 k2
+agent1.sinkgroups.g1.processor.type = load_balance
+
+agent1.sources.r1.channels = c1
+agent1.sinks.k1.channel = c1
+agent1.sinks.k2.channel = c1
+```
+
+### 具体场景
+
+**需求:** 采集客户端的不同服务生成的日志，根据类型发送到不同的存储服务。
+
+![agents](https://camo.githubusercontent.com/dad295cbfdbd0952ecbe8f99536770792f2a13c8/68747470733a2f2f666c756d652e6170616368652e6f72672f5f696d616765732f5573657247756964655f696d61676530312e706e67)
+
+针对这种情况，明显是要一个source对应多个sink，可以采用flume的扇出模式，扇出有两种方式：复制和多路复用，支持同一份source发送到不同的sink。
+
+- 复制：
+
+    ```conf
+    agent_foo.sources = r1
+    agent_foo.channels = c1 c2 c3
+    agent_foo.sinks = k1 k2 k3
+
+    agent_foo.sources.r1.channels = c1 c2 c3
+    agent_foo.sinks.k1.channel = c1
+    agent_foo.sinks.k2.channel = c2
+    agent_foo.sinks.k3.channel = c3
+    ```
+
+- 多路复用：
+
+    ```conf
+    agent_foo.sources = r1
+    agent_foo.channels = c1 c2 c3
+    agent_foo.sinks = k1 k2 k3
+
+    agent_foo.sources.r1.channels = c1 c2 c3
+    agent_foo.sinks.k1.channel = c1
+    agent_foo.sinks.k2.channel = c2
+    agent_foo.sinks.k3.channel = c3
+
+    agent_foo.sources.r1.selector.type = multiplexing
+    agent_foo.sources.r1.selector.header = state
+    agent_foo.sources.r1.selector.mapping.CZ = c1
+    agent_foo.sources.r1.selector.mapping.US = c2
+    agent_foo.sources.r1.selector.default = c3
+    ```
+
+    假如event内的数据格式如下：
+
+    ```
+    {"headers" : {"state" : "CZ"}, "body" : "msg1"}
+    {"headers" : {"state" : "US"}, "body" : "msg2"}
+    {"headers" : {"state" : "XX"}, "body" : "msg3"}
+    ```
+
+    那么msg1将分配到c1,msg2将分配到c2,msg3将分配到c3。
+
+    headers怎么设置呢？flume有内置方法：拦截器。
+
+### 拦截器
+
+拦截器的存在使用户可以向event中添加自己想要的内容。拦截器分一下几种：
+
+- Timestamp Interceptor：在event中插入当前时间戳
+
+- Host Interceptor：插入主机名
+
+- Static Interceptor：插入固定内容
+
+- Regex Filetering Interceptor：插入正则表达式匹配的内容
+
+**举个栗子**
+
+**需求：** 根据日志内的时间进行分类。
+
+**分析：** 要根据日志内容进行分类，可以采用拦截器，在根据每条日志内的时间，添加event的header，这样在sink输出时就能根据header的不同进行不同的存储处理。
+
+**实现：** 
+
+1. 拦截器配置flume-conf-taildir2hdfs-interceptor.properties：
+
+    ```
+    agent.sources = fileSrc
+    agent.channels = memoryChannel
+    agent.sinks = hdfsSink
+
+    # For each one of the sources, the type is defined
+    agent.sources.fileSrc.type = taildir
+    agent.sources.fileSrc.positionFile = /home/jony/tmp/flume_workspace/hdfs_sink/interceptor/positionFile
+    agent.sources.fileSrc.filegroups = f1
+    agent.sources.fileSrc.filegroups.f1 = /home/jony/tmp/log/.*.log
+
+    agent.sources.fileSrc.interceptors = i1
+    agent.sources.fileSrc.interceptors.i1.type = regex_extractor
+    agent.sources.fileSrc.interceptors.i1.regex = (\\d\\d\\d\\d-\\d\\d-\\d\\d)
+    agent.sources.fileSrc.interceptors.i1.serializers = s1
+    agent.sources.fileSrc.interceptors.i1.serializers.s1.name = date
+
+    # The channel can be defined as follows.
+    agent.sources.fileSrc.channels = memoryChannel
+
+    # Each sink's type must be defined
+    agent.sinks.hdfsSink.type = hdfs
+    agent.sinks.hdfsSink.hdfs.path = /user/jony/flume_data/interceptor/%{date}
+    agent.sinks.hdfsSink.hdfs.fileType = DataStream
+    agent.sinks.hdfsSink.hdfs.rollSize = 0
+    agent.sinks.hdfsSink.hdfs.rollCount = 0
+    agent.sinks.hdfsSink.hdfs.rollInterval = 60
+
+    #Specify the channel the sink should use
+    agent.sinks.hdfsSink.channel = memoryChannel
+
+    # Each channel's type is defined.
+    agent.channels.memoryChannel.type = memory
+
+    # Other config values specific to each type of channel(sink or source)
+    # can be defined as well
+    # In this case, it specifies the capacity of the memory channel
+    agent.channels.memoryChannel.capacity = 100
+    ```
+2. 启动Flume;
+
+    ```
+    ./bin/flume-ng agent --conf conf --conf-file conf/flume-conf-taildir2hdfs-interceptor.properties --name agent 
+    ```
+
+3. 查看hdfs上文件：
+
+    ```
+    jony@jony-manjaro  ~/apps/hadoop-2.7.6  hadoop fs -ls /user/jony/flume_data/interceptor
+    Found 5 items
+    drwxr-xr-x   - jony supergroup          0 2018-12-26 19:13 /user/jony/flume_data/interceptor/2018-05-29
+    drwxr-xr-x   - jony supergroup          0 2018-12-26 19:14 /user/jony/flume_data/interceptor/2018-05-30
+    drwxr-xr-x   - jony supergroup          0 2018-12-26 19:14 /user/jony/flume_data/interceptor/2018-05-31
+    drwxr-xr-x   - jony supergroup          0 2018-12-26 19:14 /user/jony/flume_data/interceptor/2018-06-01
+    drwxr-xr-x   - jony supergroup          0 2018-12-26 19:14 /user/jony/flume_data/interceptor/2018-06-02
+    ```
+
+    查看本地的positionFile：
+
+    ```
+    /home/jony/tmp/flume_workspace/hdfs_sink/interceptor
+    └── positionFile
+
+    ```
+
+大功告成！
 
 ## 总结
 
