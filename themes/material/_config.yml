@@ -20,7 +20,7 @@ head:
 url:
     rss: 
     daily_pic: "#"
-    logo: "#"
+    logo: 
 
 
 # ---------------------------------------------------------------
@@ -63,18 +63,17 @@ thumbnail:
 #        type available value: A (animal), C (culture), N (nature), S (space), T (travel)
 background:
     purecolor: "#F5F5F5"
-    #bgimg: "/img/bg.png"
-    bgimg: 
+    bgimg: "/img/bg.png"
     bing:
         enable: false
         parameter:
 
 # Images Settings
 img:
-    logo: "/img/logo.png"
+    logo: "/img/avatar/avatar-6.png"
     avatar: "/img/avatar/avatar-6.png"
     daily_pic: "/img/daily_pic.png"
-    sidebar_header: "/img/sidebar_header.png"
+    sidebar_header: "/img/daily_pic.png"
     random_thumbnail: "/img/random/material-"
     footer_image:
         upyun_logo:
@@ -204,7 +203,7 @@ sidebar:
         icon: chrome_reader_mode
         divider: true
     pages:
-        About:
+        关于我:
             link: "/about/aboutme.html"
             icon: person
             divider: false
