@@ -158,4 +158,10 @@ YARN执行流程如图所示：
 
 >参考链接3： [Apache Hadoop YARN](https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)
 
->参考链接4：[Hadoop Yarn 框架原理及运作机制](https://blog.csdn.net/liuwenbo0920/article/details/43304243)
+>参考链接4： [Hadoop Yarn 框架原理及运作机制](https://blog.csdn.net/liuwenbo0920/article/details/43304243)
+
+>参考链接5: [Hadoop Yarn详解](https://blog.csdn.net/suifeng3051/article/details/49486927)
+
+>参考链接6: [Hadoop新MapReduce框架Yarn详解](https://blog.csdn.net/he582754810/article/details/54142363)
+
+>参考链接7: [初步掌握Yarn的架构及原理](http://www.cnblogs.com/codeOfLife/p/5492740.html)
