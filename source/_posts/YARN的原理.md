@@ -1,5 +1,5 @@
 ---
-title: YARN的原理-未完待续
+title: YARN的原理
 date: 2018-12-27 07:32:12
 tags:
 categories: 大数据
@@ -165,7 +165,7 @@ YARN有三种调度器：FIFO调度器，容量调度器和公平调度器。
 
 FIFO调度器是将应用放在一个队列中，按照先后顺序依次进行任务资源的分配。优点是简单移动，不需要任何配置，缺点是不适合共享集群。因为大的应用会占用集群中的所有资源，所以每个应用都必须等待直到轮到自己执行。
 
-![YARN资源调度]()
+![YARN资源调度](https://dev.tencent.com/u/jiaoqiyuan/p/hexo-blog-code/git/raw/6fd5621eba03e1164fb16f7923b2a20ce8c302ec/source/img/YARN%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6.png)
 
 共享集群更适合使用容量调用器和公平调度器，这两种调度器都允许在大任务运行的同时运行后来的小任务，并且及时返回结果。
 
