@@ -56,6 +56,7 @@ mysql> select * from apps;
 ```
 
 ## 查看表结构
+
 ```
 mysql> show columns from websites;
 +---------+--------------+------+-----+---------+----------------+
@@ -71,7 +72,8 @@ mysql> show columns from websites;
 ```
 
 ## LIMIT语句
-```
+
+```bash
 mysql> select * from websites limit 2;
 +----+--------+-------------------------+-------+---------+
 | id | name   | url                     | alexa | country |
@@ -83,7 +85,8 @@ mysql> select * from websites limit 2;
 ```
 
 ## LIKE语句：LIKE 操作符用于在 WHERE 子句中搜索列中的指定模式。
-```
+
+```bash
 mysql> select * from websites where name like 'G%';
 +----+--------+------------------------+-------+---------+
 | id | name   | url                    | alexa | country |
@@ -93,7 +96,8 @@ mysql> select * from websites where name like 'G%';
 1 row in set (0.00 sec)
 ```
 **这里面%是通配符**
-```
+
+```bash
 mysql> select * from websites where name like 'J%';
 +----+-----------+---------------+-------+---------+
 | id | name      | url           | alexa | country |
@@ -101,7 +105,9 @@ mysql> select * from websites where name like 'J%';
 |  6 | JonyChiao | jiaoqiyuan.cn |   200 | CN      |
 +----+-----------+---------------+-------+---------+
 1 row in set (0.00 sec)
-=========================================================================================================
+```
+
+```bash
 mysql> select * from websites where name not like 'J%';
 +----+--------------+---------------------------+-------+---------+
 | id | name         | url                       | alexa | country |
@@ -122,7 +128,8 @@ mysql> select * from websites where name not like 'J%';
 | _   | 替代一个字符 |
 | [charlist] | 字符列表中的任何单一字符 |
 | [^charlist] 或 [!charlist] | 不在字符列表中的任何一个单一字符 |
-```
+
+```bash
 mysql> select * from websites where url like 'https%';
 +----+----------+---------------------------+-------+---------+
 | id | name     | url                       | alexa | country |
@@ -167,7 +174,8 @@ mysql> select * from websites where name regexp '^[^J]';
 **注意：Mysql不支持[charsite]、[!charsite]通配符**
 
 ## IN操作符：N 操作符允许在 WHERE 子句中规定多个值
-```
+
+```bash
 mysql> select * from websites where name in ('JonyChiao', 'Google');
 +----+-----------+------------------------+-------+---------+
 | id | name      | url                    | alexa | country |
@@ -180,7 +188,8 @@ mysql> select * from websites where name in ('JonyChiao', 'Google');
 
 ## BETWEEN操作符
 - BETWEEN 操作符用于选取介于两个值之间的数据范围内的值。这些值可以是数值、文本或者日期。
-    ```
+
+    ```bash
     mysql> select * from websites where alexa between 1 and 10;
     +----+----------+---------------------------+-------+---------+
     | id | name     | url                       | alexa | country |
@@ -203,7 +212,8 @@ mysql> select * from websites where name in ('JonyChiao', 'Google');
     ```
 
 - 选取alexa介于1到20但是country不是USA和IND的所有网站：
-    ```
+
+    ```bash
     mysql> select * from websites where (alexa between 1 and 20) and country not in ('USA', 'IND');
     +----+--------+-------------------------+-------+---------+
     | id | name   | url                     | alexa | country |
@@ -215,7 +225,8 @@ mysql> select * from websites where name in ('JonyChiao', 'Google');
     ```
 
 - 选取 name 以介于 'A' 和 'H' 之间字母开始的所有网站：
-    ```
+
+    ```bash
     mysql> select * from websites where name between 'A' and 'H';
     +----+----------+---------------------------+-------+---------+
     | id | name     | url                       | alexa | country |
@@ -247,9 +258,11 @@ mysql> select * from websites where name in ('JonyChiao', 'Google');
     因此，请检查您的数据库是如何处理 BETWEEN 操作符！
 
 ## 别名
-    - 通过使用 SQL，可以为表名称或列名称指定别名。基本上，创建别名是为了让列名称的可读性更强。
-    - 列的别名：
-    ```
+
+- 通过使用 SQL，可以为表名称或列名称指定别名。基本上，创建别名是为了让列名称的可读性更强。
+- 列的别名：
+
+    ```bash
     mysql> select name as n, country as c from websites;
     +--------------+-----+
     | n            | c   |
@@ -263,8 +276,9 @@ mysql> select * from websites where name in ('JonyChiao', 'Google');
     5 rows in set (0.00 sec)
     ```
 
-    - 表的别名：
-    ```
+- 表的别名：
+
+    ```bash
     mysql> select w.name, w.url, a.count, a.date from websites as w, access_log as a where a.site_id=w.id;
     +--------------+---------------------------+-------+------------+
     | name         | url                       | count | date       |
@@ -285,15 +299,15 @@ mysql> select * from websites where name in ('JonyChiao', 'Google');
     select w.name, w.url, a.count, a.date from websites w, access_log a where a.site_id=w.id;
     ```
 
-    - 别名一般使用在以下情况：
-        - 查询中涉及超过一个表
-        - 在查询中使用了函数
-        - 类名称很长或者可读性很差
-        - 需要把两个列或者多个列结合在一起
+- 别名一般使用在以下情况：
+    - 查询中涉及超过一个表
+    - 在查询中使用了函数
+    - 类名称很长或者可读性很差
+    - 需要把两个列或者多个列结合在一起
 
 ## JOIN：SQL JOIN 子句用于把来自两个或多个表的行结合起来，基于这些表之间的共同字段。
 
-```
+```bash
 mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on w.id=a.site_id;
 +----+--------------+-------+------------+
 | id | name         | count | date       |
@@ -315,7 +329,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     - inner join 与join相同
 
     ![Inner Join][1]
-    ```
+
+    ```bash
     mysql> select * from websites w inner join access_log a on w.id=a.site_id order by a.count;
     +----+--------------+---------------------------+-------+---------+-----+---------+-------+------------+
     | id | name         | url                       | alexa | country | aid | site_id | count | date       |
@@ -334,7 +349,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 
 - LEFT JOIN:关键字从左表（table1）返回所有的行，即使右表（table2）中没有匹配。如果右表中没有匹配，则结果为 NULL。
-    ```
+
+    ```bash
     mysql> insert into websites value(6, 'stackoverflow', 'http://stackoverflow.com/', 0, 'IND');
 
     mysql> select w.name, a.count, a.date from websites w left join access_log a on w.id=a.site_id order by a.count desc;
@@ -359,24 +375,24 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ![RIGHTJOIN][2]
 
-    ```
-    mysql> select w.name, a.count, a.date from websites w right join access_log a on w.id=a.site_id order by a.count desc;
-    +--------------+-------+------------+
-    | name         | count | date       |
-    +--------------+-------+------------+
-    | Facebook     |   545 | 2016-05-16 |
-    | Google       |   230 | 2016-05-14 |
-    | 菜鸟教程     |   220 | 2016-05-15 |
-    | Facebook     |   205 | 2016-05-14 |
-    | 菜鸟教程     |   201 | 2016-05-17 |
-    | 菜鸟教程     |   100 | 2016-05-13 |
-    | Google       |    45 | 2016-05-10 |
-    | 微博         |    13 | 2016-05-15 |
-    | 淘宝         |    10 | 2016-05-14 |
-    +--------------+-------+------------+
-    9 rows in set (0.00 sec)
-    注意这里没有了StackOverflow。
-    ```
+```bash
+mysql> select w.name, a.count, a.date from websites w right join access_log a on w.id=a.site_id order by a.count desc;
++--------------+-------+------------+
+| name         | count | date       |
++--------------+-------+------------+
+| Facebook     |   545 | 2016-05-16 |
+| Google       |   230 | 2016-05-14 |
+| 菜鸟教程     |   220 | 2016-05-15 |
+| Facebook     |   205 | 2016-05-14 |
+| 菜鸟教程     |   201 | 2016-05-17 |
+| 菜鸟教程     |   100 | 2016-05-13 |
+| Google       |    45 | 2016-05-10 |
+| 微博         |    13 | 2016-05-15 |
+| 淘宝         |    10 | 2016-05-14 |
++--------------+-------+------------+
+9 rows in set (0.00 sec)
+注意这里没有了StackOverflow。
+```
 
 - FULL JOIN:
 
@@ -392,7 +408,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## UNION操作符：合并两个或多个 SELECT 语句的结果。
 - 默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。
-    ```
+
+    ```bash
     mysql> select country from websites union select country from apps;
     +---------+
     | country |
@@ -439,7 +456,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 ## SQL INSERT INTO SELECT 语句:从一个表复制数据，然后把数据插入到一个已存在的表中。目标表中任何已存在的行都不会受影响。
 
 - 复制 "apps" 中的数据插入到 "Websites" 中：
-    ```
+
+    ```bash
     mysql> insert into websites(name, country) select app_name, country from apps;
     Query OK, 3 rows affected (0.04 sec)
     Records: 3  Duplicates: 0  Warnings: 0
@@ -463,9 +481,10 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 ## 创建数据库：create database my_db
 
 ## 创建表
-    ```
-    create table people( PersonID int, LastName varchar(255), FirstName varchar(255), Address varchar(255), City varchar(255) );
-    ```
+
+```bash
+create table people( PersonID int, LastName varchar(255), FirstName varchar(255), Address varchar(255), City varchar(255) );
+```
 
 ## SQL约束
 - SQL 约束用于规定表中的数据规则。
@@ -480,7 +499,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ### NOT NULL约束
 - 约束强制字段始终包含值。这意味着，如果不向字段添加值，就无法插入新记录或者更新记录。
-    ```
+
+    ```bash
     CREATE TABLE Persons
     (
     P_Id int NOT NULL,
@@ -496,7 +516,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 - UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证。
 - PRIMARY KEY 约束拥有自动定义的 UNIQUE 约束。
 - 每个表可以有多个 UNIQUE 约束，但是每个表只能有一个 PRIMARY KEY 约束。
-    ```
+
+    ```bash
     在 "Persons" 表创建时在 "P_Id" 列上创建 UNIQUE 约束：
     CREATE TABLE Persons
     (
@@ -521,7 +542,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 - ALTER TABLE 时的 SQL UNIQUE 约束
     alter与update的区别：有一句话很形象，alter相当于修改房间，而update相当于更新家具。alter操作的是表内数据的类型和约束，update用于操作数据。
-    ```
+
+    ```bash
     当表已被创建时，如需在 "P_Id" 列创建 UNIQUE 约束，请使用下面的 SQL：
     ALTER TABLE Persons ADD UNIQUE (P_Id)
 
@@ -530,7 +552,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 
 - 撤销 UNIQUE 约束
-    ```
+
+    ```bash
     ALTER TABLE Persons DROP INDEX uc_PersonID
     ```
 
@@ -540,7 +563,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 - 主键列不能包含 NULL 值。
 - 每个表都应该有一个主键，并且每个表只能有一个主键。
 - CREATE TABLE 时的 SQL PRIMARY KEY 约束
-    ```
+    ```bash
     在 "Persons" 表创建时在 "P_Id" 列上创建 PRIMARY KEY 约束：
     CREATE TABLE Persons
     (
@@ -564,7 +587,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     )
     ```
 - ALTER TABLE 时的 SQL PRIMARY KEY 约束
-    ```
+    ```bash
     当表已被创建时，如需在 "P_Id" 列创建 PRIMARY KEY 约束，请使用下面的 SQL：
     ALTER TABLE Persons ADD PRIMARY KEY (P_Id)
 
@@ -573,38 +596,38 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 
 - 撤销 PRIMARY KEY 约束
-    ```
+    ```bash
     ALTER TABLE Persons DROP PRIMARY KEY
     ```
 
 ## SQL FOREIGN KEY 约束:一个表中的 FOREIGN KEY 指向另一个表中的 UNIQUE KEY(唯一约束的键)。
 - 例子:
-    - Persons表：
+- Persons表：
 
-    | P_Id | LastName | FirstName | Address | City |
-    |:----:|:--------:|:---------:|:-------:|:----:|
-    | 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes|
-    | 2    | Svendson | Tove      | Borgvn 23 | Sandnes |
-    | 3    | Pettersen | Kari     | Srotgt 20 | Stavanger |
+| P_Id | LastName | FirstName | Address | City |
+|:----:|:--------:|:---------:|:-------:|:----:|
+| 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes|
+| 2    | Svendson | Tove      | Borgvn 23 | Sandnes |
+| 3    | Pettersen | Kari     | Srotgt 20 | Stavanger |
 
-    - Orders表
+- Orders表
 
-    | O_Id | OrderNo | P_Id |
-    |:----:|:-------:|:----:|
-    | 1    | 77999   | 3    |
-    | 2    | 88888   | 3    |
-    | 3    | 23545   | 2    |
-    | 4    | 34354   | 1    |
+| O_Id | OrderNo | P_Id |
+|:----:|:-------:|:----:|
+| 1    | 77999   | 3    |
+| 2    | 88888   | 3    |
+| 3    | 23545   | 2    |
+| 4    | 34354   | 1    |
 
-    - Orders表中的P_Id列指向Persons表中的P_Id列。
-    - Persons表中的P_Id列是Persons表中的PRIMARY KEY。
-    - Orders表中的P_Id列是Orders表中的FOREIGN KEY。
-    - FOREIGN KEY约束用于预防破坏表之间连接的行为。
-    - FOREIGN KEY约束也能预防非法数据插入外键列，因为它必须是它指向的那个表中的值之一。
+- Orders表中的P_Id列指向Persons表中的P_Id列。
+- Persons表中的P_Id列是Persons表中的PRIMARY KEY。
+- Orders表中的P_Id列是Orders表中的FOREIGN KEY。
+- FOREIGN KEY约束用于预防破坏表之间连接的行为。
+- FOREIGN KEY约束也能预防非法数据插入外键列，因为它必须是它指向的那个表中的值之一。
 
 - CREATE TABLE 时的 SQL FOREIGN KEY 约束
     - 在 "Orders" 表创建时在 "P_Id" 列上创建 FOREIGN KEY 约束：
-    ```
+    ```bash
     CREATE TABLE Orders
     (
     O_Id int NOT NULL,
@@ -616,7 +639,8 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 
     - 如果需要命名FOREIGN KEY约束，并定义多列的FOREIGN KEY约束，使用这样的SQL语法：
-    ```
+
+    ```bash
     CREATE TABLE Orders
     (
     O_Id int NOT NULL,
@@ -628,15 +652,18 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 
 - ALTER TABLE 时的 SQL FOREIGN KEY 约束:
-    - 当 "Orders" 表已被创建时，如需在 "P_Id" 列创建 FOREIGN KEY 约束，请使用下面的 SQL：
-    ```
+
+- 当 "Orders" 表已被创建时，如需在 "P_Id" 列创建 FOREIGN KEY 约束，请使用下面的 SQL：
+
+    ```bash
     ALTER TABLE Orders
     ADD FOREIGN KEY (P_Id)
     REFERENCES Persons(P_Id)
     ```
     
-    - 如需命名 FOREIGN KEY 约束，并定义多个列的 FOREIGN KEY 约束，请使用下面的 SQL 语法：
-    ```
+- 如需命名 FOREIGN KEY 约束，并定义多个列的 FOREIGN KEY 约束，请使用下面的 SQL 语法：
+
+    ```bash
     ALTER TABLE Orders
     ADD CONSTRAINT fk_PerOrders
     FOREIGN KEY (P_Id)
@@ -776,42 +803,42 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ALTER TABLE table_name MODIFY COLUMN column_name datatype
     ```
 - 实例
-    - Persons表
+- Persons表
 
-    | P_Id | LastName | FirstName | Address | City |
-    |:----:|:--------:|:---------:|:-------:|:----:|
-    | 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes|
-    | 2    | Svendson | Tove      | Borgvn 23 | Sandnes |
-    | 3    | Pettersen | Kari     | Srotgt 20 | Stavanger |
+| P_Id | LastName | FirstName | Address | City |
+|:----:|:--------:|:---------:|:-------:|:----:|
+| 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes|
+| 2    | Svendson | Tove      | Borgvn 23 | Sandnes |
+| 3    | Pettersen | Kari     | Srotgt 20 | Stavanger |
 
-    - 在 "Persons" 表中添加一个名为 "DateOfBirth" 的列：
-    ```
-    ALTER TABLE Persons ADD DateOfBirth data
-    这里DataOfBirth的类型是data，可以存放日期。
-    ```
-    - 现在Persons表内容如下：
-    | P_Id | LastName | FirstName | Address | City | DataOfBirth |
-    |:----:|:--------:|:---------:|:-------:|:----:| |
-    | 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes| |
-    | 2    | Svendson | Tove      | Borgvn 23 | Sandnes | |
-    | 3    | Pettersen | Kari     | Srotgt 20 | Stavanger | |
+- 在 "Persons" 表中添加一个名为 "DateOfBirth" 的列：
+```
+ALTER TABLE Persons ADD DateOfBirth data
+这里DataOfBirth的类型是data，可以存放日期。
+```
+- 现在Persons表内容如下：
+| P_Id | LastName | FirstName | Address | City | DataOfBirth |
+|:----:|:--------:|:---------:|:-------:|:----:| |
+| 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes| |
+| 2    | Svendson | Tove      | Borgvn 23 | Sandnes | |
+| 3    | Pettersen | Kari     | Srotgt 20 | Stavanger | |
 
-    - 改变数据类型，将DataOfBirth改为存放年份的列：
-    ```
-    ALTER TABLE Persons ALTER COLUMN DataOfBirth year
-    ```
+- 改变数据类型，将DataOfBirth改为存放年份的列：
+```
+ALTER TABLE Persons ALTER COLUMN DataOfBirth year
+```
 
-    - DROP COULUMN实例：
-    ```
-    ALTER TABLE Persons DROP COLUMN DataOfBirth
-    ```
-    - Persons数据表现在的内容是：
+- DROP COULUMN实例：
+```
+ALTER TABLE Persons DROP COLUMN DataOfBirth
+```
+- Persons数据表现在的内容是：
 
-    | P_Id | LastName | FirstName | Address | City |
-    |:----:|:--------:|:---------:|:-------:|:----:|
-    | 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes|
-    | 2    | Svendson | Tove      | Borgvn 23 | Sandnes |
-    | 3    | Pettersen | Kari     | Srotgt 20 | Stavanger |
+| P_Id | LastName | FirstName | Address | City |
+|:----:|:--------:|:---------:|:-------:|:----:|
+| 1    | Hansen   | Ola       | Timoteivn 10 | Sandnes|
+| 2    | Svendson | Tove      | Borgvn 23 | Sandnes |
+| 3    | Pettersen | Kari     | Srotgt 20 | Stavanger |
 
 ## AUTO_INCREMENT字段
 - 通常在每次插入新纪录时，希望能够自动创建主键的值，可以通过创建一个auto_increment字段
@@ -863,7 +890,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## SQL AVG()函数：返回数值列的平均值
 - 从access_log表的count列获取平均值
-    ```
+    ```bash
     mysql> select avg(count) as CountAverage from access_log;
     +--------------+
     | CountAverage |
@@ -902,7 +929,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     SELECT COUNT(DISTINCT column_name) FROM table_name
     ```
 
-    ```
+    ```bash
     mysql> select count(site_id) as nums from access_log;
     +------+
     | nums |
@@ -924,7 +951,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## LIMIT
 - 返回指定列中第一个记录的值
-    ```
+    ```bash
     mysql> select name as FirstSite from websites limit 1;
     +-----------+
     | FirstSite |
@@ -934,7 +961,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     1 row in set (0.00 sec)
     ```
 - 返回指定列中最后一个值
-    ```
+    ```bash
     mysql> select name as LastName from websites order by id desc limit 1;
     +---------------+
     | LastName      |
@@ -946,7 +973,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     
 ## MAX()函数
 - 返回指定列的最大值
-    ```
+    ```bash
     mysql> select max(alexa) as max_alexa from websites;
     +-----------+
     | max_alexa |
@@ -957,7 +984,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 ## MIN()函数
 - 返回指定列的最小值
-    ```
+    ```bash
     mysql> select min(alexa) as min_alexa from websites;
     +-----------+
     | min_alexa |
@@ -970,7 +997,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 ## SUM()函数
 - 返回列的总数
     - 查找access_log表中的count字段总数
-    ```
+    ```bash
     mysql> select sum(count) as nums from access_log;
     +------+
     | nums |
@@ -982,7 +1009,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## GROUP BY语句
 - 用于结合聚合函数，根据一个或多个列对结果集进行分组。
-    ```
+    ```bash
     mysql> select site_id, sum(access_log.count) as nums from access_log group by site_id;
     +---------+------+
     | site_id | nums |
@@ -1010,28 +1037,29 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
     ```
 
 ## HAVING子句
-    ```
-    select websites.name, sum(access_log.count) as nums from websites inner join access_log on websites.id=access_log.site_id group by websites.name having sum(access_log.count) > 200;
-    select websites.name, sum(access_log.count) as nums from websites inner join access_log on access_log.site_id=websites.id group by websites.name having sum(access_log.count) > 200;
+
+```bash
+select websites.name, sum(access_log.count) as nums from websites inner join access_log on websites.id=access_log.site_id group by websites.name having sum(access_log.count) > 200;
+select websites.name, sum(access_log.count) as nums from websites inner join access_log on access_log.site_id=websites.id group by websites.name having sum(access_log.count) > 200;
 
 
-    mysql> select websites.name, sum(access_log.count) as nums from websites inner join access_log
-    -> on websites.id=access_log.site_id
-    -> where websites.alexa < 200
-    -> group by websites.name
-    -> having sum(access_log.count) > 200;
-    +----------+------+
-    | name     | nums |
-    +----------+------+
-    | Facebook |  750 |
-    | Google   |  275 |
-    +----------+------+
-    2 rows in set (0.00 sec)
-    ```
+mysql> select websites.name, sum(access_log.count) as nums from websites inner join access_log
+-> on websites.id=access_log.site_id
+-> where websites.alexa < 200
+-> group by websites.name
+-> having sum(access_log.count) > 200;
++----------+------+
+| name     | nums |
++----------+------+
+| Facebook |  750 |
+| Google   |  275 |
++----------+------+
+2 rows in set (0.00 sec)
+```
 
 ## UCASE()函数
 - 把字段值转换成大写
-    ```
+    ```bash
     mysql>     select ucase(name) as site_title, url from websites;
     +---------------+---------------------------+
     | site_title    | url                       |
@@ -1048,7 +1076,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## LCASE()函数
 - 把字段值转化为小写
-    ```
+    ```bash
     mysql>     select lcase(name) as site_title, url from websites;
     +---------------+---------------------------+
     | site_title    | url                       |
@@ -1065,7 +1093,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## MID()函数
 - 从文本字段中提取字符
-    ```
+    ```bash
     mysql> select mid(name, 1, 3) as ShortTitle from websites;
     +------------+
     | ShortTitle |
@@ -1082,7 +1110,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## LEN()函数
 - 返回文本字段中值的长度
-    ```
+    ```bash
     mysql> select name, LENGTH(url) as LengthOfUrl from websites;
     +---------------+-------------+
     | name          | LengthOfUrl |
@@ -1099,7 +1127,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## ROUND()函数
 - 用于把数值字段舍入为指定的小数位数
-    ```
+    ```bash
     返回参数X的四舍五入的一个整数。
     mysql> select round(-1.58);
     +--------------+
@@ -1121,7 +1149,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## NOW()函数
 - 返回当前系统的日期和时间
-    ```
+    ```bash
     mysql>     select name, url, now() as date from websites;
     +---------------+---------------------------+---------------------+
     | name          | url                       | date                |
@@ -1139,7 +1167,7 @@ mysql> select w.id, w.name, a.count, a.date from websites w join access_log a on
 
 ## FORMAT()函数
 - 用于对字段进行格式化
-    ```
+    ```bash
     mysql> select name, url, date_format(now(), '%Y-%m-%d') as date from websites;
     +---------------+---------------------------+------------+
     | name          | url                       | date       |

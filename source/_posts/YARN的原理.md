@@ -181,15 +181,17 @@ FIFO调度器是将应用放在一个队列中，按照先后顺序依次进行�
 
 写这篇文章的目的是加深自己对YARN的理解，同时记录下来希望能够方便自己后期查阅以及帮助他人了解YARN，我知道我记录的这些深度远远不够，而且很多是参考别人的文章，我没读过YARN的源码，对于它的设计思想也只是通过书本和博客了解到的，希望在实际工作中遇到相关内容的时候能够对YARN有更深刻的理解！
 
->参考书籍： 《Hadoop权威指南》
+----
 
->参考链接1： [Hadoop YARN](https://www.w3cschool.cn/hadoop/rh161hda.html)   
+>参考书籍: 《Hadoop权威指南》
 
->参考链接2： [Hadoop YARN的发展史与详细解析](https://www.csdn.net/article/2013-12-18/2817842-bd-hadoopyarn) 
+>参考链接1: [Hadoop YARN](https://www.w3cschool.cn/hadoop/rh161hda.html)   
 
->参考链接3： [Apache Hadoop YARN](https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)
+>参考链接2: [Hadoop YARN的发展史与详细解析](https://www.csdn.net/article/2013-12-18/2817842-bd-hadoopyarn) 
 
->参考链接4： [Hadoop Yarn 框架原理及运作机制](https://blog.csdn.net/liuwenbo0920/article/details/43304243)
+>参考链接3: [Apache Hadoop YARN](https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)
+
+>参考链接4: [Hadoop Yarn 框架原理及运作机制](https://blog.csdn.net/liuwenbo0920/article/details/43304243)
 
 >参考链接5: [Hadoop Yarn详解](https://blog.csdn.net/suifeng3051/article/details/49486927)
 
