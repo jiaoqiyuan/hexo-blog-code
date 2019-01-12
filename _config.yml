@@ -4,7 +4,7 @@
 
 # Site
 title: My Love
-subtitle: bulaubulabula
+subtitle: I will be stronger
 description: bulabula
 author: Jony Chiao
 language: zh-CN
@@ -49,7 +49,7 @@ highlight:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 10
+  per_page: 5
   order_by: -date
   
 # Category & Tag
@@ -82,6 +82,8 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@git.coding.net:jiaoqiyuan/jiaoqiyuan.coding.me.git
+  repo: 
+    coding: git@git.coding.net:jiaoqiyuan/jiaoqiyuan.coding.me.git
+    #github: git@github.com:jiaoqiyuan/jiaoqiyuan.github.io.git
   branch: master
 

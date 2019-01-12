@@ -4,6 +4,7 @@ date: 2018-12-26 01:27:43
 tags:
 categories: 大数据
 thumbnail: https://blog.rackspace.com/wp-content/uploads/2014/10/Hadoop.png
+photos: https://blog.rackspace.com/wp-content/uploads/2014/10/Hadoop.png
 ---
 
     进行大数据开发一般都离不开Hadoop环境，Hadoop慢慢也变成了一个生态环境的代名词，这里记录一下Hadoop本地伪分布式环境的搭建。

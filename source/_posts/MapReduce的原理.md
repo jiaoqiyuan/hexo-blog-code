@@ -4,6 +4,7 @@ date: 2018-12-24 06:25:10
 tags:
 categories: 大数据
 thumbnail: https://blog.eduonix.com/wp-content/uploads/2016/04/Introduction-to-Map-Reduce-Programming-model-reviewed-740X296.jpg
+photos: https://blog.eduonix.com/wp-content/uploads/2016/04/Introduction-to-Map-Reduce-Programming-model-reviewed-740X296.jpg
 ---
 
     MapReduce是hadoop中的一个重要的计算框架，善于进行大量数据的离线处理，这里总结一下我对MapReduce的理解。
@@ -124,7 +125,7 @@ partitions的值有两种情况：
 - partitions > 1时，通过反射得到partitioner：
 
 ```java
-partitioner =(org.apache.hadoop.mapreduce.Partitioner<K,V>)  ReflectionUtils.newInstance(jobContext.getPartitionerClass(),job);
+partitioner =(org.apache.hadoop.mapreduce.Partitioner<K,V>); ReflectionUtils.newInstance(jobContext.getPartitionerClass(),job);
 ```
 
 getPartitionerClass()返回值是conf.getClass(PARTITIONER_CLASS_ATTR, HashPartitioner.class)默认是HashPartitioner实现，getPartition()的实现如下：

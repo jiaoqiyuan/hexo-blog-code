@@ -4,6 +4,7 @@ date: 2018-12-27 07:32:12
 tags:
 categories: 大数据
 thumbnail: https://2s7gjr373w3x22jf92z99mgm5w-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/hadoop-yarn.png
+photos: https://2s7gjr373w3x22jf92z99mgm5w-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/hadoop-yarn.png
 ---
 
 

@@ -4,6 +4,7 @@ date: 2019-01-05 09:53:33
 tags:
 categories: 大数据
 thumbnail: https://www.tertiarycourses.com.sg/media/catalog/product/cache/1/image/512x/040ec09b1e35df139433887a97daa66f/a/p/apache-hive_1.jpg
+photos: https://www.tertiarycourses.com.sg/media/catalog/product/cache/1/image/512x/040ec09b1e35df139433887a97daa66f/a/p/apache-hive_1.jpg
 ---
 
 ## 关系运算

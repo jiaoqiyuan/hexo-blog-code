@@ -4,6 +4,7 @@ date: 2018-10-22 16:17:14
 tags:
 categories: 数据库
 thumbnail: https://zhidao91.oss-cn-shanghai.aliyuncs.com/wp-content/uploads/2015/11/databaseDevelopment.jpg
+photos: https://zhidao91.oss-cn-shanghai.aliyuncs.com/wp-content/uploads/2015/11/databaseDevelopment.jpg
 ---
 
 sqlzoo是一个[SQL语句练习网站][1]。

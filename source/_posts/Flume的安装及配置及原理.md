@@ -4,6 +4,7 @@ date: 2018-12-26 05:33:15
 tags:
 categories: 大数据
 thumbnail: https://stayrelevant.globant.com/wp-content/uploads/2012/06/apache-flume-1-728.jpg
+photos: https://stayrelevant.globant.com/wp-content/uploads/2012/06/apache-flume-1-728.jpg
 ---
 
     Flume是一个高可用、高可靠、分布式的海量数据采集、聚合、传输的系统。

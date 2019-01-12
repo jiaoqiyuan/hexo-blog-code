@@ -4,6 +4,7 @@ date: 2018-06-20 21:17:21
 tags:
 categories: python
 thumbnail: http://editerupload.eepw.com.cn/201411/48601416902987.jpg
+photos: http://editerupload.eepw.com.cn/201411/48601416902987.jpg
 ---
 
 1. ipython中可以使用edit命令编辑文件内容，edit打开文件的方式根据系统已安装编辑器决定，也可以通过执行ipython前使用

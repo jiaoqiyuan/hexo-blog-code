@@ -1,8 +1,6 @@
 ---
-title: aboutme
-date: 2017-10-20 10:26:30
-tags:
-thumbnail: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508506538217&di=e5cc51647bb9a194ae08f25724e7c2ec&imgtype=0&src=http%3A%2F%2Fatt.x2.hiapk.com%2Fforum%2F201603%2F08%2F131820wfv2vbm82v2we2wh.jpg
+title: Aboutme
+date: 2019-01-11 17:11:34
 ---
 
 有点懒惰，有点拖延症，有点悲观主义，有点理想主义，有点自私，有点脆弱。

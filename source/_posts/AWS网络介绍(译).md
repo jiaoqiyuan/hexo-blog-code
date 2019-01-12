@@ -4,6 +4,7 @@ date: 2018-11-30 10:32:21
 tags:
 categories: 翻译
 thumbnail: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+photos: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 ---
 
 # Everything You Need To Know About Networking On AWS

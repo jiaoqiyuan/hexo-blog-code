@@ -4,6 +4,7 @@ date: 2018-06-05 07:34:08
 tags:
 categories: linux
 thumbnail: https://teddysun.com/wp-content/uploads/2014/Linux.jpg
+photos: https://teddysun.com/wp-content/uploads/2014/Linux.jpg
 ---
 
     还是最近项目中遇到的问题，是关于动态库的，这里做个总结。

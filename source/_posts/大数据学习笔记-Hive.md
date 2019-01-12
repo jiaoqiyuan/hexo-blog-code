@@ -4,6 +4,7 @@ date: 2018-10-14 12:30:11
 tags: 
 categories: 大数据
 thumbnail: http://cdn1.itpro.co.uk/sites/itpro/files/2017/02/bigstock-big_data-159884873.jpg
+photos: http://cdn1.itpro.co.uk/sites/itpro/files/2017/02/bigstock-big_data-159884873.jpg
 ---
 
 

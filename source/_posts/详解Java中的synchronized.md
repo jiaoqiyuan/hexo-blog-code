@@ -4,6 +4,7 @@ date: 2019-01-04 13:18:33
 tags:
 categories: java
 thumbnail: https://fossbytes.com/wp-content/uploads/2018/09/java-11.png
+photos: https://fossbytes.com/wp-content/uploads/2018/09/java-11.png
 ---
 
 ## Synchronized
