@@ -8,7 +8,9 @@ photos: https://2s7gjr373w3x22jf92z99mgm5w-wpengine.netdna-ssl.com/wp-content/up
 ---
 
 
-    YARN是Hadoop生态中重要的资源调度和管理框架，理解好YARN的原理和执行流程对集群的资源分配和管理有很大帮助。
+YARN是Hadoop生态中重要的资源调度和管理框架，理解好YARN的原理和执行流程对集群的资源分配和管理有很大帮助。
+
+<!--more-->
 
 ## YARN是什么
 

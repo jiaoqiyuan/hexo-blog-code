@@ -24,6 +24,8 @@ photos: https://www.tertiarycourses.com.sg/media/catalog/product/cache/1/image/5
     1
     ```
 
+<!--more-->
+
 2. 不等值比较：<>
 
     语法：A <> B

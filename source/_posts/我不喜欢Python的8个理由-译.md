@@ -16,7 +16,10 @@ photos: https://cdn-images-1.medium.com/max/1600/1*7EUX9QIjq2x1JyFKcjhXsA.png"
 
 ## 我觉得Python辣鸡的8个理由
 
+
 Occasionally I go out to lunch with some of my techie friends and we have a great time geeking together. We talk about projects, current events, and various tech-related issues. Inevitably, the discussion will turn to programming languages. One might lament "I have to modify some Java code. I hate Java. (Oh, sorry, Kyle.)" (It probably doesn't help that we gave Kyle the nickname "Java-boy" over a decade ago.) Another will gripe about some old monolithic shell code that nobody wants to rewrite.
+
+<!--more-->
 
 我偶尔出去跟我懂技术的朋友进行一些极客一点的聚会时，我们会讨论到一些项目、实时大事以及一些技术相关的问题。肯定的是，这些讨论最终都会落脚到编程语言上。其中有些人会哀嚎道“我有时不得不修改一些Java的底层代码，我讨厌Java，（额...，不还意思，开尔）”（十多年前，我们给凯尔起了个“Java-boy”的绰号，但这可能对避免我们吐槽Java无济于事）。另一个人可能会抱怨一些没人愿意重写的古老shell代码。
 

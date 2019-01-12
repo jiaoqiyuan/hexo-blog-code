@@ -19,6 +19,8 @@ photos: https://www.tertiarycourses.com.sg/media/catalog/product/cache/1/image/5
 
 有关Hadoop的安装，HDFS和YARN的配置可以参考我写的 [配置本地Hadoop环境][1]，另外Hive的常用函数可以参考我的另一篇文章 [Hive常用函数总结][2] 。
 
+<!--more-->
+
 # 相关数据资源
 
 可以从我的[百度云盘这个地址][3]下载相关数据资源信息。然后将这些资源信息放到HDFS上，在后续创建Hive表的过程中根据你实际放置的HDFS路径修改location相关的内容即可。

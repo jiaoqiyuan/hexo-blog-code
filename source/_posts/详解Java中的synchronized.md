@@ -14,6 +14,8 @@ photos: https://fossbytes.com/wp-content/uploads/2018/09/java-11.png
 
 > Synchronized方法支持使用一种简单的策略来防止线程间的干扰和内存一致性错误：如果一个对象对多个线程可见，则对该对象变量的所有读写都是通过通过Synchronized方法完成。
 
+<!--more-->
+
 ## Synchronized的作用
 
 上面的介绍一句话概括就是：
