@@ -3,8 +3,8 @@ title: 8 Reasons Python Sucks-译
 date: 2019-01-11 07:35:51
 tags:
 categories: 翻译
-thumbnail: https://cdn-images-1.medium.com/max/1600/1*7EUX9QIjq2x1JyFKcjhXsA.png
-photos: https://cdn-images-1.medium.com/max/1600/1*7EUX9QIjq2x1JyFKcjhXsA.png"
+thumbnail: https://getcodify.com/wp-content/uploads/2016/10/Python_logo.jpg
+photos: https://getcodify.com/wp-content/uploads/2016/10/Python_logo.jpg
 ---
 
 
