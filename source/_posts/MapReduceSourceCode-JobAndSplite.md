@@ -1,5 +1,5 @@
 ---
-title: MapReduce源码分析-上
+title: MapReduce源码分析1-任务提交流程与切片
 date: 2019-01-19 11:17:01
 tags: [大数据, MapReduce]
 categories: 大数据

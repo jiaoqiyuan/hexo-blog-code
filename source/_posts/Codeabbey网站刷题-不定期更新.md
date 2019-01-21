@@ -1,6 +1,6 @@
 ---
 title: Codeabbey网站刷题-不定期更新
-date: 2019-01-14 16:05:10
+date: 2019-01-21 09:05:10
 tags: [算法, codeabbey]
 categories: 算法
 photos: https://www.codeabbey.com/img/facade.gif
@@ -370,6 +370,108 @@ public class PrimeNumberGeneration61 {
     }
 }
 ```
+
+## [#94. Fool's Day 2014](https://www.codeabbey.com/index/task_view/fools-day-2014)
+
+作者给出了一串数字让自己找规律，很简单，就是每行数字的平方和。
+
+```java
+package codeabby;
+
+import java.util.Scanner;
+
+public class FoolsDay94 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        input.nextLine();
+
+        while (input.hasNextLine()) {
+            String line = input.nextLine();
+            int sum = 0;
+            for (String word : line.split(" ")) {
+                sum += Integer.parseInt(word) * Integer.parseInt(word);
+            }
+            System.out.println(sum + " ");
+        }
+    }
+}
+```
+
+## [#59. Bulls and Cows](https://www.codeabbey.com/index/task_view/bulls-and-cows)
+
+考察关于字符串与字符之间转换的问题，逻辑很简单，比较重视基础。
+
+```java
+package codeabby;
+
+import java.util.Scanner;
+
+public class BullsAndCows59 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String standardNumber = input.next();
+        input.nextLine();
+        String line = input.nextLine();
+        for (String word : line.split(" ")) {
+            int correctPosition = 0;
+            int wrongPosition = 0;
+            for (int i = 0; i < word.length(); i++) {
+                //如果相同位置的数字相等，就将第一个值加1
+                if (word.charAt(i) == standardNumber.charAt(i)) {
+                    correctPosition += 1;
+                //如果相同位置的数字不等，就判断一下这个数字在给出的standardNumber中是否存在，如果存在就将第二个值加1
+                } else if (standardNumber.indexOf(word.charAt(i)) != -1) {
+                    wrongPosition += 1;
+                }
+            }
+            System.out.println(correctPosition + "-" + wrongPosition + " ");
+        }
+    }
+}
+```
+
+## [#22. Two Printers](https://www.codeabbey.com/index/task_view/two-printers)
+
+题意是有两个打印机，二者打印速度不同，打印机1的打印速度是X秒每张，打印机2的速度是Y秒每张，两台打印机共同打印N页值，求最短打印时间。这里采用的是穷举法，找出每种情况下打印的时间，取最小值。
+
+```java
+package codeabby;
+
+import java.util.Scanner;
+
+public class TwoPrinters22 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        input.nextLine();
+        while (input.hasNextLine()) {
+            String words[] = input.nextLine().split(" ");
+            int x_printer = Integer.parseInt(words[0]);     //X值
+            int y_printer = Integer.parseInt(words[1]);     //Y值
+            int pages = Integer.parseInt(words[2]);         //打印页数
+            int time = 0;                                   //打印总时间
+            //穷举法，将x打印页数从0到pages的情况全部列出来，找出时间最短的那种情况
+            for (int i = 0; i < pages; i++) {
+                int tmp_time = 0;
+                //如果x打印机最终花费了较长的时间，就以x打印机的时间为准
+                if (i * x_printer >= (pages - i) * y_printer) {
+                    tmp_time = i * x_printer;
+                //如果y打印机花费了较长时间，就以y打印机的时间为准
+                } else {
+                    tmp_time = (pages - i) * y_printer;
+                }
+                //如果是第一次循环（time=0）或者当前情况下时间比之前记录的最小时间短，就更新最短时间.
+                if (time == 0 || tmp_time < time) {
+                    time = tmp_time;
+                }
+            }
+            System.out.println(time + " ");
+
+        }
+    }
+}
+```
+
+
 
 [1]: https://www.codeabbey.com/
 [2]: https://www.codeabbey.com/index/task_view/sum-of-two

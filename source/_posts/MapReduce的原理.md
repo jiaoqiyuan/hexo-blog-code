@@ -1,13 +1,15 @@
 ---
 title: MapReduce的原理
 date: 2018-12-24 06:25:10
-tags:
+tags: [大数据, MapReduce]
 categories: 大数据
 thumbnail: https://blog.eduonix.com/wp-content/uploads/2016/04/Introduction-to-Map-Reduce-Programming-model-reviewed-740X296.jpg
 photos: https://blog.eduonix.com/wp-content/uploads/2016/04/Introduction-to-Map-Reduce-Programming-model-reviewed-740X296.jpg
 ---
 
-    MapReduce是hadoop中的一个重要的计算框架，善于进行大量数据的离线处理，这里总结一下我对MapReduce的理解。
+> MapReduce是hadoop中的一个重要的计算框架，善于进行大量数据的离线处理，这里总结一下我对MapReduce的理解。
+
+<!--more-->
 
 ## MapReduce组成部分
 
