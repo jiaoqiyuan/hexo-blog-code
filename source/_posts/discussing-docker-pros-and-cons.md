@@ -11,7 +11,7 @@ photos: https://cdn-images-1.medium.com/max/1600/0*KBn45TeUMJZSbz9n.png
 
 文章来源：[Discussing Docker. Pros and Cons.][2]
 
--------
+----
 
 ## Discussing Docker. Pros and Cons. 讨论一下Docker的优缺点
 
