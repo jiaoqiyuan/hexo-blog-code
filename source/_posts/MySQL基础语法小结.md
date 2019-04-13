@@ -180,3 +180,21 @@ UPDATE tdb_goods(要更新的表) INNER JOIN tdb_goods_cates(要更新的列) ON
 ```
 CREATE TABLE IF NOT EXISTS tbl_name [create_definition,……] Select_statement
 ```
+
+## 使用mysqldump进行mysql数据的备份
+
+实际工作中经常需要对数据库进行定时备份，防止意外导致的数据丢失，mysql也提供了备份和恢复机制，备份是通过 `mysqldump` 命令实现的，恢复直接通过 `mysql` 命令实现。
+
+加入我当前的MySQL中有一个名叫 `sqoop` 的数据库，备份命令如下：
+
+```sql
+mysqldump -u root -p -h 10.173.32.6 -P3306 sqoop > sqoop.sql
+```
+
+`10.173.32.6` 是我mysql所在服务器的地址，执行完成后会生成一个sqoop.sql的数据库脚本，把这个数据库脚本文件拷贝到其他mysql安装的地方就能恢复mysql，恢复命令如下：
+
+```sql
+mysql -uroot -p sqoop -h192.168.1.2 -P3306 < sqoop.sql
+```
+
+很简单。

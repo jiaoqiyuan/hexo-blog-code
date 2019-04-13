@@ -445,6 +445,65 @@ DATABASE_PARAMS存储数据库的相关参数。
     alter table bigdata.weblog add partition (day='2018-06-07') location '/user/hadoop/weblog/day=2018-06-07';
     ```
 
+## 配置hive使用mysql存储元数据
+
+修改hive-site.xml，将下面的内容：
+
+```xml
+<!--JDBC元数据仓库连接字符串-->
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:derby:;databaseName=metastore_db;create=true</value>
+    <description>JDBC connect string for a JDBC metastore</description>
+  </property>
+  <!--JDBC元数据仓库驱动类名-->
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>org.apache.derby.jdbc.EmbeddedDriver</value>
+    <description>Driver class name for a JDBC metastore</description>
+  </property>
+  <!--元数据仓库用户名-->
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>APP</value>
+    <description>Username to use against metastore database</description>
+  </property>
+   <!--元数据仓库密码-->
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>mine</value>
+    <description>password to use against metastore database</description>
+  </property>
+```
+
+替换成下面的内容，需要提前将mysql的驱动下载并放到hive的lib目录下：
+
+```xml
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>123456</value>
+    <description>password to use against metastore database</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:mysql://bigdata5:3306/hive_meta?createDatabaseIfNotExist=true&amp;useSSL=true</value>
+    <description>JDBC connect string for a JDBC metastore</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>com.mysql.jdbc.Driver</value>
+    <description>Driver class name for a JDBC metastore</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>root</value>
+    <description>Username to use against metastore database</description>
+  </property>
+```
+
+根据实际情况填写mysql的ip，然后运行hive即可。
+
+
 # 写一个基本的查询语句
 
 ## SELECT的用法

@@ -7,7 +7,6 @@ thumbnail: http://cdn1.itpro.co.uk/sites/itpro/files/2017/02/bigstock-big_data-1
 ---
 
 
-
 # 表1： websites
 ```
 mysql> select * from websites;
