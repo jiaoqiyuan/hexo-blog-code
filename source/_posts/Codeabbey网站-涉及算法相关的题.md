@@ -134,5 +134,120 @@ public class CardShuffling45 {
 }
 ```
 
+## [46. Tic-Tac-Toe](https://www.codeabbey.com/index/task_view/tic-tac-toe)
+
+这道题有点像五子棋，只不过棋子是三个。
+
+我的解题思路是将所有可能的情况列举出来，每走一步判断一下是否有三子共线。
+
+```java
+import java.util.*;
+
+public class TicTacToe46 {
+    static List<List<String>> allres;
+    public static void format_wins() {
+        List<String> w1 = Arrays.asList("1", "2", "3");
+        List<String> w2 = Arrays.asList("4", "5", "6");
+        List<String> w3 = Arrays.asList("7", "8", "9");
+        List<String> w4 = Arrays.asList("1", "4", "7");
+        List<String> w5 = Arrays.asList("2", "5", "8");
+        List<String> w6 = Arrays.asList("3", "6", "9");
+        List<String> w7 = Arrays.asList("1", "5", "9");
+        List<String> w8 = Arrays.asList("3", "5", "7");
+        allres = Arrays.asList(w1, w2, w3, w4, w5, w6, w7, w8);
+    }
+
+    public static boolean check(List<String> player) {
+
+        for (List<String> wins : allres) {
+            if (player.containsAll(wins)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        input.nextLine();
+        format_wins();
+        while (input.hasNextLine()) {
+            String inputs[] = input.nextLine().split(" ");
+            List<String> playerA = new ArrayList<>();
+            List<String> playerB = new ArrayList<>();
+            boolean flag = false;
+            for (int i = 0; i < inputs.length; i++) {
+                if (i % 2 == 0) {
+                    playerA.add(inputs[i]);
+                } else {
+                    playerB.add(inputs[i]);
+                }
+                if (i < 4) {
+                    continue;
+                } else {
+                    if (check(playerA) || check(playerB)) {
+                        System.out.print(i + 1 + " ");
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+            if (!flag) {
+                System.out.println("0 ");
+            }
+        }
+    }
+}
+```
+
+别人不错的方法，将表格映射成 char 数组，将棋子映射为 `X` 和 `O`，未放置棋子的映射为 `-` ，然后判断：
+
+```java
+package codeabby;
+import java.util.Scanner;
+
+public class TicTacToe46_good {
+    private static Scanner in;
+
+    public static void main(String[] args){
+        in = new Scanner(System.in);
+        int N=in.nextInt();
+        for(int i=0;i<N;i++){
+            int input[]=new int[9];
+            char grid[]=new char[9];
+            for(int j=0;j<9;j++){
+                grid[j]='-';
+                input[j]=in.nextInt();
+            }
+            int step=1;
+            for(int j=0;j<9;j++){
+                if((j+1)%2!=0) grid[input[j]-1]='X';
+                else grid[input[j]-1]='O';
+                if(!isTris(grid))step++;
+            }
+            if(!isTris(grid))step=0;
+            System.out.print(step+" ");
+        }
+
+    }
+
+    public static Boolean isTris(char[] g){
+        for(int k=0;k<9;k=k+3){
+            if(g[k]==g[k+1] && g[k]==g[k+2] && g[k]!='-'){
+                return true;
+            }
+        }
+        for(int k=0;k<3;k++){
+            if(g[k]==g[k+3] && g[k]==g[k+6] && g[k]!='-'){
+                return true;
+            }
+        }
+        if(g[0]==g[4] && g[0]==g[8] && g[0]!='-') return true;
+        if(g[2]==g[4] && g[2]==g[6] && g[2]!='-') return true;
+        return false;
+    }
+}
+```
+
 
 [1]: https://www.codeabbey.com/
