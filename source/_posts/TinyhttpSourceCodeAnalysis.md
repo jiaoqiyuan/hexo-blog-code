@@ -659,7 +659,7 @@ void execute_cgi(int client, const char *path,
 
 还有一张图片描述了 execute_cgi 的整个流程：
 
-![execute_cgi](https://images2015.cnblogs.com/blog/899843/201701/899843-20170118123322953-1752118016.png)
+![execute_cgi](https://github.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/execute_cgi.png)
 
 这里重点关注一下管道的概念和使用方式。
 
