@@ -84,6 +84,6 @@ deploy:
   type: git
   repo: 
     coding: git@git.coding.net:jiaoqiyuan/jiaoqiyuan.coding.me.git
-    github: git@github.com:jiaoqiyuan/jiaoqiyuan.github.io.git
+    # github: git@github.com:jiaoqiyuan/jiaoqiyuan.github.io.git
   branch: master
 

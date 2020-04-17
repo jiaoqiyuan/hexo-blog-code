@@ -12,6 +12,8 @@ date: 2019-01-11 17:11:34
 
 想要结交些新朋友，改变一下自己现有的圈子和现状，人生苦短，需要尝试很多很多。
 
+时间过得真快，要好好生活！
+
 
   [1]: https://weibo.com/u/1848984155
   [2]: https://www.zhihu.com/people/jiao-qi-yuan-89/activities

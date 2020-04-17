@@ -127,8 +127,8 @@ hexo g -d
   [1]: https://npm.taobao.org/mirrors/node/v8.7.0/node-v8.7.0-linux-x64.tar.xz
   [2]: https://npm.taobao.org/mirrors/node/v8.7.0/node-v8.7.0-linux-x86.tar.xz
   [3]: http://nodejs.cn/
-  [4]: https://raw.githubusercontent.com/jiaoqiyuan/hexo-blog-code/master/source/img/nodejs.png
+  [4]: https://jiaoqiyuan.coding.net/p/hexo-blog-code/d/hexo-blog-code/git/raw/master/source/img/nodejs.png
   [5]: https://npm.taobao.org/
   [6]: https://raw.githubusercontent.com/jiaoqiyuan/hexo-blog-code/master/source/img/hexo-install.png
   [7]: https://jingyan.baidu.com/article/f7ff0bfc7181492e27bb1360.html
-  [8]:https://upload-images.jianshu.io/upload_images/660127-c4c554b26669999f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700
+  [8]: https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=146250778,195677632&fm=26&gp=0.jpg 

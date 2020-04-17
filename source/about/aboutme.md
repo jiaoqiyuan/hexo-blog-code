@@ -14,6 +14,7 @@ thumbnail: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1
 
 想要结交些新朋友，改变一下自己现有的圈子和现状，人生苦短，需要尝试很多很多。
 
+时间过得真快！
 
   [1]: https://weibo.com/u/1848984155
   [2]: https://www.zhihu.com/people/jiao-qi-yuan-89/activities
