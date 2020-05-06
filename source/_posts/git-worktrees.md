@@ -1,5 +1,5 @@
 ---
-title: Git WorkTrees：你从未听说过的 Git 最佳特性
+title: Git WorkTrees：你从未听说过的 Git 最佳特性 - 译
 date: 2020-05-06 15:08:29
 tags: git
 categories: 翻译
