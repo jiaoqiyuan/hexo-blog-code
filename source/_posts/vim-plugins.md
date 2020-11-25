@@ -8,6 +8,8 @@ photos: https://github.com/jiaoqiyuan/pics/raw/master/blog/vim-plugins/vim-pligi
 
 [vim 慕课网课程](https://www.imooc.com/video/19463)，内容挺全的，这里大部分内容都是基于该视频整理的。
 
+<!--more-->
+
 ------
 
 ## 基本配置（无插件）
@@ -22,8 +24,6 @@ syntax on
 " 设置缩进
 set tabstop=4
 ```
-
-<!--more-->
 
 ## vim-plug 插件安装工具
 

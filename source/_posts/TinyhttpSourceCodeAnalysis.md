@@ -3,18 +3,18 @@ title: Tinyhttpd源码解析
 date: 2019-09-24 07:47:36
 tags: [linux, C]
 category: linux
-photos: https://github.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/tinyhttpd.png
+photos: https://gitee.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/tinyhttpd.png
 ---
 
 > [TinyHttpd](https://github.com/EZLippi/Tinyhttpd) 是一个用 C 语言写的及其简洁的 HTTP 服务程序，一共只有 500 行左右代码，非常适合拿来学习 HTTP。
+
+<!--more-->
 
 这篇博客也是自己一边学习一遍记录的学习笔记。
 
 2020-4-18
 
 ----
-
-<!--more-->
 
 ## 效果演示
 
@@ -41,17 +41,17 @@ photos: https://github.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/tinyhttpd.p
     执行结果：
 
     ```
-     🐠 jony@deepin # ./httpd 
+    🐠 jony@deepin # ./httpd 
     httpd running on port 4000
     ```
 
 4. 在浏览器输入 `localhost:4000`，进入测试页面：
 
-    ![index](https://github.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/index.png)
+    ![index](https://gitee.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/index.png)
 
     输入 `blue`，点击提交。
 
-    ![color](https://github.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/color-cgi.png)
+    ![color](https://gitee.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/color-cgi.png)
 
 
 ## 源码解析
@@ -661,7 +661,7 @@ void execute_cgi(int client, const char *path,
 
 还有一张图片描述了 execute_cgi 的整个流程：
 
-![execute_cgi](https://github.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/execute_cgi.png)
+![execute_cgi](https://gitee.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/execute_cgi.png)
 
 这里重点关注一下管道的概念和使用方式。
 
@@ -669,7 +669,7 @@ void execute_cgi(int client, const char *path,
 
 在运行 httpd 服务端后打开 wireshark 抓包看一下具体的数据信息；在输入颜色提交后，可以抓取到如下数据：
 
-![wireshark](https://github.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/httpwireshark.png)
+![wireshark](https://gitee.com/jiaoqiyuan/pics/raw/master/blog/tinyhttpd/httpwireshark.png)
 
 执行提交后客户端向浏览器发送了一个 POST 请求，附带有颜色信息。
 

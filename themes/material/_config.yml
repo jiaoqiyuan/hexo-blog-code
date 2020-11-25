@@ -228,7 +228,7 @@ sidebar:
 # If you want to use gitment,you should get the client_id and client_secret form https://github.com/settings/applications/new
 # If you want to use valine,you should get the app_id and app_key form https://leancloud.cn ,more setting please see https://github.com/xCss/Valine
 comment: 
-    use: valine
+    use:
     shortname: # duoshuo or disqus shortname
     changyan_appid:
     changyan_conf:
@@ -238,8 +238,8 @@ comment:
     gitment_owner:  # git repo's owner
     gitment_client_id:  # github app client id 
     gitment_client_secret :  # github app client secret 
-    valine_leancloud_appId: n2HspM41RbogfYToohbhdzcF-gzGzoHsz # leancloud application app id
-    valine_leancloud_appKey: BmbN7noqgmLyN99xJLQfDwYv # leancloud application app key
+    valine_leancloud_appId: # leancloud application app id
+    valine_leancloud_appKey: # leancloud application app key
 
 # Search Systems
 # Available value:
@@ -258,7 +258,7 @@ analytics:
 
 # Leancloud Views
 leancloud:
-    enable: true
+    enable: false
     app_id: n2HspM41RbogfYToohbhdzcF-gzGzoHsz #你的 app_id
     app_key: BmbN7noqgmLyN99xJLQfDwYv #你的 app_key
     av_core_mini: "https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"
