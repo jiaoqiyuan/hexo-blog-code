@@ -7,11 +7,13 @@ thumbnail: https://git-scm.com/images/branching-illustration@2x.png
 photos: https://git-scm.com/images/branching-illustration@2x.png
 ---
 
-信息来源：[阮一峰每周分享](https://github.com/ruanyf/weekly/blob/master/docs/issue-105.md)
+> 信息来源：[阮一峰每周分享](https://github.com/ruanyf/weekly/blob/master/docs/issue-105.md)
 
-文章来源：[Discussing Docker. Pros and Cons.](https://levelup.gitconnected.com/git-worktrees-the-best-git-feature-youve-never-heard-of-9cd21df67baf)
+> 文章来源：[Discussing Docker. Pros and Cons.](https://levelup.gitconnected.com/git-worktrees-the-best-git-feature-youve-never-heard-of-9cd21df67baf)
 
 ----
+
+<!--more-->
 
 ### Before There Were Trees 在有 worktree 之前
 
