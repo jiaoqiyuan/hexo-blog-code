@@ -83,7 +83,7 @@ theme: next
 deploy:
   type: git
   repo: 
-    coding: git@e.coding.net:jiaoqiyuan/jiaoqiyuan.coding.me.git
-    # github: git@github.com:jiaoqiyuan/jiaoqiyuan.github.io.git
+    # coding: git@e.coding.net:jiaoqiyuan/jiaoqiyuan.coding.me.git
+    github: git@github.com:jiaoqiyuan/jiaoqiyuan.github.io.git
   branch: master
 
