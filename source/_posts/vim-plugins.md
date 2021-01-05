@@ -3,7 +3,7 @@ title: Vim插件配置
 date: 2019-08-21 03:15:46
 tags: 
 categories: vim
-photos: https://github.com/jiaoqiyuan/pics/raw/master/blog/vim-plugins/vim-pligin-title.png
+photos: https://gitee.com/jiaoqiyuan/pics/raw/master/blog/vim-plugins/vim-pligin-title.png
 ---
 
 [vim 慕课网课程](https://www.imooc.com/video/19463)，内容挺全的，这里大部分内容都是基于该视频整理的。
@@ -53,7 +53,7 @@ call plug#end()
 
 然后 `:PlugInstall` 即可，启动 vim 时可以看到欢迎界面：
 
-![vim-startify](https://github.com/jiaoqiyuan/pics/raw/master/blog/vim-plugins/vim-starify.png)
+![vim-startify](https://gitee.com/jiaoqiyuan/pics/raw/master/blog/vim-plugins/vim-starify.png)
 
 ## vim-airline 状态栏美化插件
 
